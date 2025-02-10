@@ -1,25 +1,25 @@
 name: Deploy to Server
 
 on:
-  push:
-    branches:
-      - master
+    push:
+        branches:
+            - master
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+    deploy:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
 
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan hamamou.com >> ~/.ssh/known_hosts
+            - name: Setup SSH
+              run: |
+                  mkdir -p ~/.ssh
+                  echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+                  chmod 600 ~/.ssh/id_rsa
+                  ssh-keyscan -H resume.hamamou.com >> ~/.ssh/known_hosts
 
-      - name: Deploy Files via SCP
-        run: |
-          scp -r * houssem@hamamou.com:/var/www/html/
+            - name: Deploy Files via SCP
+              run: |
+                  scp -r * houssem@resume.hamamou.com:/var/www/resume.hamamou.com/
