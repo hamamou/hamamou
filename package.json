@@ -1,0 +1,13 @@
+{
+    "name": "hamamou-site",
+    "private": true,
+    "scripts": {
+        "dev": "npx tailwindcss -i ./src/input.css -o ./output.css --watch",
+        "build:css": "npx tailwindcss -i ./src/input.css -o ./output.css --minify"
+    },
+    "devDependencies": {
+        "tailwindcss": "^3.4.10",
+        "autoprefixer": "^10.4.19",
+        "postcss": "^8.4.38"
+    }
+}
